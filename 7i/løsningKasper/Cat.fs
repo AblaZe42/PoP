@@ -17,7 +17,6 @@ let readFiles (filenames : string list) : byte[] option list =
     List.map (fun x -> try readFile x |> Some with _ -> None) filenames
 
 
-
 let writeBytes (bytes : byte[]) (fs:FileStream) =
     printfn "Writing %d bytes to filestream" (Array.length bytes)
     printfn "CanWrite: %A" fs.CanWrite
