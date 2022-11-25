@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "98Y/nhSzrOX+1tZPCsuxu2FqTUL3SFSdrRkDnawnWKmZeT3tf8nV9l5Ech+mTXAWdTcZsiIBo4I4mAM0SDmfQA==",
+  "dgSpecHash": "3qyHoV4LVx2MlhW0F+Mr5Z5VWWe8qkvyCDSDGK/WzrTj8QbqYqlWTg1y4vu3cnPThRgJ82oTb5wu/dbMAzwzTQ==",
   "success": true,
-  "projectFilePath": "C:\\C\\Statestik\\PoP\\PoP\\7i\\øvelser\\7ø1\\CatList.fsproj",
+  "projectFilePath": "C:\\C\\gitHub\\PoP\\7i\\øvelser\\7ø1\\CatList.fsproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Husted\\.nuget\\packages\\fsharp.core\\6.0.5\\fsharp.core.6.0.5.nupkg.sha512"
+    "C:\\Users\\alx26\\.nuget\\packages\\fsharp.core\\6.0.5\\fsharp.core.6.0.5.nupkg.sha512"
   ],
   "logs": []
 }

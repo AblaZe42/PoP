@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\C\\Statestik\\PoP\\PoP\\7i\\øvelser\\7ø1\\CatList.fsproj": {}
+    "C:\\C\\gitHub\\PoP\\7i\\øvelser\\7ø1\\CatList.fsproj": {}
   },
   "projects": {
-    "C:\\C\\Statestik\\PoP\\PoP\\7i\\øvelser\\7ø1\\CatList.fsproj": {
+    "C:\\C\\gitHub\\PoP\\7i\\øvelser\\7ø1\\CatList.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\C\\Statestik\\PoP\\PoP\\7i\\øvelser\\7ø1\\CatList.fsproj",
+        "projectUniqueName": "C:\\C\\gitHub\\PoP\\7i\\øvelser\\7ø1\\CatList.fsproj",
         "projectName": "CatList",
-        "projectPath": "C:\\C\\Statestik\\PoP\\PoP\\7i\\øvelser\\7ø1\\CatList.fsproj",
-        "packagesPath": "C:\\Users\\Husted\\.nuget\\packages\\",
-        "outputPath": "C:\\C\\Statestik\\PoP\\PoP\\7i\\øvelser\\7ø1\\obj\\",
+        "projectPath": "C:\\C\\gitHub\\PoP\\7i\\øvelser\\7ø1\\CatList.fsproj",
+        "packagesPath": "C:\\Users\\alx26\\.nuget\\packages\\",
+        "outputPath": "C:\\C\\gitHub\\PoP\\7i\\øvelser\\7ø1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Husted\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\alx26\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"

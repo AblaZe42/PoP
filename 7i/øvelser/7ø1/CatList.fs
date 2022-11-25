@@ -1,8 +1,6 @@
 module CatList
 open DiffList
 
-
-
 type 'a catlist =
     | Empty
     | Single of 'a
@@ -48,8 +46,18 @@ let fromCatList (xs : 'a catlist) : 'a list =
             | Append (x,y) -> f x @ f y
     f xs    
 
+let lst = append nil nil
+lst
+
+// let toCatList (xs : 'a list) : 'a catlist =
+//     failwith "Not Implemented"
+
 let toCatList (xs : 'a list) : 'a catlist =
-    failwith "Not Implemented"
+     let rec f t =
+         match t with
+             [] -> rst
+             | [t] -> single t
+     f xs
 
 let item (i:int) (xs : 'a catlist) : 'a =
     failwith "Not Implemented"
@@ -72,3 +80,12 @@ printfn "%A" (length cat3)
 
 let cat4 = fromCatList cat2
 printfn "%A" cat4
+
+let lst1 : 'a list = [1; 2; 3; 3; 5]
+
+let test (xs: 'a list) =
+    lst |> cons xs[1]
+
+printfn "%A" (test lst1)
+
+printfn "toCatList: %A" (toCatList lst1)
