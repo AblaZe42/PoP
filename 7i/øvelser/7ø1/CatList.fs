@@ -65,7 +65,7 @@ let fromCatList (xs : 'a catlist) : 'a list =
     f xs    
 
 let toCatList (xs : 'a list) : 'a catlist =
-    failwith "Not Implemented"
+    List.foldBack cons xs Empty
 
 /// <summary> Takes a catlist and converts it to 'a list </summary>
 /// <param name = int > the index that item returns </param>
@@ -87,17 +87,40 @@ let item (int:int) (xs : 'a catlist) : 'a =
                 failwith "Fail: Wildcard"
     f int xs
 
+// COPY/PASTE
 let insert (i:int) (elm:'a) (xs:'a catlist) : 'a catlist =
-    failwith "Not Implemented"
+    let rec u i (xs: 'a catlist) =
+        if i=0 then (cons elm xs)
+        elif i = length xs then snoc xs elm
+        else
+            match xs with
+                | Append (ys, zs) ->
+                    if i <(length (ys)) then
+                        Append (u i (ys), (zs))
+                    else
+                        Append (ys, u(i-length (ys)) zs)
+                |_-> failwith "fejl"
+    u i xs
 
-let delete (i:int) (xs:'a catlist) : 'a catlist =
-    failwith "Not Implemented"
+// COPY/PASTE
+let delete (int:int) (xs:'a catlist) : 'a catlist =
+    let rec f int xs =
+        match xs with
+            Single elm when int = 0 -> nil
+            | Append (s1, s2) ->
+                if int < (length (s1)) 
+                then Append (f int (s1), (s2))
+                else Append (s1, f (int-(length s1))s2)
+            |_-> 
+                failwith "Fail: Wildcard"
+    f int xs
 
 // TEST
 printfn "!-- testCatlist --!"
 let cat1 : 'a catlist = append(single 1) (nil) |> append nil
 let cat2 : 'a catlist = cat1 |> cons 3
 let cat3 : 'a catlist = snoc cat1 3
+let lst = [1;2;3]
 printfn "cat1: %A" cat1
 printfn "cat2: %A" cat2
 printfn "cat3: %A" cat3
@@ -109,5 +132,5 @@ printfn "Sum: %A" (sum cat2)
 
 let lst4 = fromCatList cat2
 printfn "fromCatList: %A" lst4
-
+printfn "toCatList: %A" (toCatList lst)
 printfn "item: %A" (item 0 cat3)
