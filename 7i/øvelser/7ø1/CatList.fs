@@ -64,12 +64,6 @@ let fromCatList (xs : 'a catlist) : 'a list =
             | Append (x,y) -> f x @ f y
     f xs    
 
-let lst = append nil nil
-lst
-
-// let toCatList (xs : 'a list) : 'a catlist =
-//     failwith "Not Implemented"
-
 let toCatList (xs : 'a list) : 'a catlist =
     List.foldBack cons xs Empty
 
@@ -113,10 +107,10 @@ let delete (int:int) (xs:'a catlist) : 'a catlist =
     let rec f int xs =
         match xs with
             Single elm when int = 0 -> nil
-            | Append (s1, s2) ->
-                if int < (length (s1)) 
-                then Append (f int (s1), (s2))
-                else Append (s1, f (int-(length s1))s2)
+            | Append (x, y) ->
+                if int < (length (x)) 
+                then Append (f int (x), (x))
+                else Append (x, f (int-(length x))y)
             |_-> 
                 failwith "Fail: Wildcard"
     f int xs
@@ -136,16 +130,7 @@ printfn "!-- testFunctions --!"
 printfn "lenght: %A" (length cat3)
 printfn "Sum: %A" (sum cat2)
 
-let lst4 = fromCatList cat2
-printfn "fromCatList: %A" lst4
-printfn "toCatList: %A" (toCatList lst)
-printfn "item: %A" (item 0 cat3)
-
-let lst1 : 'a list = [1; 2; 3; 3; 5]
-
-let test (xs: 'a list) =
-    lst |> cons xs[1]
-
-printfn "%A" (test lst1)
-
+let lst1 = [1;2;3]
+let lst2 = fromCatList cat2
+printfn "fromCatList: %A" lst2
 printfn "toCatList: %A" (toCatList lst1)
