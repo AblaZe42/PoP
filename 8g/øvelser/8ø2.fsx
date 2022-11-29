@@ -1,0 +1,2 @@
+let mulTable (n:int) =
+    
