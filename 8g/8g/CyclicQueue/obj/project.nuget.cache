@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "j18ZD7QAaKVsAscD3w9oR9AcSddkymkSYdo0KHsNWak4e2MqhGLCeFEy6tg0wzF6rC0wkEPaxUYRwL4CcLfnjA==",
+  "dgSpecHash": "iTPK8NBF2M88z1jhfNNLTvh7cD//Lvy3pSGFpiKZh+9HgT/H1MSfz2rbo9z15+X55a/hjuODrz3HYeew72mMCw==",
   "success": true,
-  "projectFilePath": "C:\\C\\gitHub\\PoP\\8g\\8g\\CyclicQueue\\CyclicQueue.fsproj",
+  "projectFilePath": "C:\\C\\Statestik\\PoP\\PoP\\8g\\8g\\CyclicQueue\\CyclicQueue.fsproj",
   "expectedPackageFiles": [
-    "C:\\Users\\alx26\\.nuget\\packages\\fsharp.core\\6.0.5\\fsharp.core.6.0.5.nupkg.sha512"
+    "C:\\Users\\Husted\\.nuget\\packages\\fsharp.core\\6.0.5\\fsharp.core.6.0.5.nupkg.sha512"
   ],
   "logs": []
 }

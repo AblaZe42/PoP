@@ -3,6 +3,8 @@ module CyclicQueue
 type Value = int
 
 let mutable array = [||]
+let mutable tail = -1
+let mutable head = 0
 
 let create (n: int) : unit =
     array <- [||]
@@ -10,7 +12,13 @@ let create (n: int) : unit =
     printfn "array: %A" array
 
 let enqueue (e: Value) : bool =
-    failwith "Not implemented yet: dequeue"    
+    if array[array.Length-1] = None 
+    then 
+        tail <- (tail + 1) 
+        array[tail] <- (Some e)
+        printfn "%A" array
+        true
+    else false
 
 let dequeue () : Value option =
     failwith "Not implemented yet: dequeue"    
@@ -19,8 +27,7 @@ let isEmpty () : bool =
     failwith "Not implemented yet: isEmpty"    
 
 let length () : int =
-    let a = [|1; 2; 3|]
-    a.Length
+    array.Length
 
 let toString () : string =
     failwith "Not implemented yet: toString"    
