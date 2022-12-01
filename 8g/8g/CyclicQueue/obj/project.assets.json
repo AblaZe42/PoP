@@ -117,19 +117,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Husted\\.nuget\\packages\\": {}
+    "C:\\Users\\alx26\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\C\\Statestik\\PoP\\PoP\\8g\\8g\\CyclicQueue\\CyclicQueue.fsproj",
+      "projectUniqueName": "C:\\C\\gitHub\\PoP\\8g\\8g\\CyclicQueue\\CyclicQueue.fsproj",
       "projectName": "CyclicQueue",
-      "projectPath": "C:\\C\\Statestik\\PoP\\PoP\\8g\\8g\\CyclicQueue\\CyclicQueue.fsproj",
-      "packagesPath": "C:\\Users\\Husted\\.nuget\\packages\\",
-      "outputPath": "C:\\C\\Statestik\\PoP\\PoP\\8g\\8g\\CyclicQueue\\obj\\",
+      "projectPath": "C:\\C\\gitHub\\PoP\\8g\\8g\\CyclicQueue\\CyclicQueue.fsproj",
+      "packagesPath": "C:\\Users\\alx26\\.nuget\\packages\\",
+      "outputPath": "C:\\C\\gitHub\\PoP\\8g\\8g\\CyclicQueue\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Husted\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\alx26\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"

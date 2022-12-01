@@ -9,6 +9,7 @@ let main _ =
     enqueue 5
     enqueue 6
     enqueue 7
+    enqueue 8
 
     // Write your tests here
     // (or organize your tests into functions and call them from here)
