@@ -13,19 +13,23 @@ let create (n: int) : unit =
     printfn "array: %A" array
 
 let enqueue (e: Value) : bool =
-    if tail = (array.Length-1)
-    then
-        size <- size + 1
-        tail <- 0 
-        array[tail] <- (Some e)
-        printfn "%A" array
-        true
-    else 
-        size <- size + 1
-        tail <- (tail + 1) 
-        array[tail] <- (Some e)
-        printfn "%A" array
-        true
+    if size = array.Length
+    then false
+    else
+        if tail = (array.Length-1)
+        then
+            size <- size + 1
+            tail <- 0 
+            array[tail] <- (Some e)
+            printfn "%A" array
+            true
+        else 
+            size <- size + 1
+            tail <- (tail + 1) 
+            array[tail] <- (Some e)
+            printfn "%A" array
+            true
+ 
 
 let dequeue () : Value option =
     failwith "Not implemented yet: dequeue"    
