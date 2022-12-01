@@ -30,10 +30,10 @@ printfn "%s" (loopMulTable 10)
 // loopMulTable2 3
 // printfn "%A" (loopMulTable2 10)
 
-// let lst = ["cat"; "fish"; "fly"]
-// for i in lst do
-// printf "%A " i
-// printfn ""
+let lst = ["cat"; "fish"; "fly"]
+for i in lst do
+printf "%A " i
+printfn ""
 
 // for i in [1..5] do
 // printf "%A " i

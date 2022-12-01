@@ -2,23 +2,30 @@ open CyclicQueue
 
 [<EntryPoint>]
 let main _ =
+    printfn "* Test create *"
     create 5
-    create 10
-    create 3
-    printfn "%A" (length())
+    printfn ""
+    printfn "* Test enqueue*"
+    enqueue 1
+    enqueue 2
+    enqueue 3
+    enqueue 4
     enqueue 5
+    printfn "toString: %A" (toString())
+    printfn ""
+    printfn "* Test dequeue *"
+    printfn "dequeue: %A" (dequeue())
+    printfn "dequeue: %A" (dequeue())
+    printfn "toString: %A" (toString())
+    printfn ""
+    printfn "* Test isEmpty *"
+    printfn "isEmpty: %A" (isEmpty())
+    printfn ""
+    printfn "* Test isEmpty *"
+    printfn "isEmpty: %A" (length())
+    printfn ""
+    printfn "* Test toString *"
     enqueue 6
     enqueue 7
-    enqueue 8
-    printfn "%A" (dequeue())
-    enqueue 8
-    enqueue 9
-    printfn "%A" (dequeue())
-    printfn "%A" (dequeue())
-    enqueue 8
-    enqueue 9
-
-    // Write your tests here
-    // (or organize your tests into functions and call them from here)
-    // Exit status; consider making it the number of failed tests
+    printfn "toString: %A" (toString())
     0
