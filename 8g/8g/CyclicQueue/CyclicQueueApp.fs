@@ -10,6 +10,13 @@ let main _ =
     enqueue 6
     enqueue 7
     enqueue 8
+    printfn "%A" (dequeue())
+    enqueue 8
+    enqueue 9
+    printfn "%A" (dequeue())
+    printfn "%A" (dequeue())
+    enqueue 8
+    enqueue 9
 
     // Write your tests here
     // (or organize your tests into functions and call them from here)

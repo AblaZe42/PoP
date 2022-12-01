@@ -30,9 +30,16 @@ let enqueue (e: Value) : bool =
             printfn "%A" array
             true
  
-
 let dequeue () : Value option =
-    failwith "Not implemented yet: dequeue"    
+    printfn "%A" size
+    if size = 0
+    then None
+    else 
+        size <- size - 1
+        let h = head
+        head  <- head + 1
+        printfn "%A" array
+        array[0]
 
 let isEmpty () : bool =
     failwith "Not implemented yet: isEmpty"    
