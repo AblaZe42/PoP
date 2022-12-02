@@ -21,8 +21,8 @@ let main _ =
     printfn "* Test isEmpty *"
     printfn "isEmpty: %A" (isEmpty())
     printfn ""
-    printfn "* Test isEmpty *"
-    printfn "isEmpty: %A" (length())
+    printfn "* Test length *"
+    printfn "length: %A" (length())
     printfn ""
     printfn "* Test toString *"
     enqueue 6

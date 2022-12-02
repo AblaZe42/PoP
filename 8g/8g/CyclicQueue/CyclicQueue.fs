@@ -13,6 +13,7 @@ let mutable size = 0
 /// <summary>Create or clear the cyclic queue</summary>
 /// <param name="n">The maximum number of elements</param>
 let create (n: int) : unit =
+    tail <- -1
     q <- [||]
     q <- Array.append q [|for i in 1 .. n -> None|]
     printfn "array: %A" q
@@ -32,7 +33,7 @@ let enqueue (e: Value) : bool =
             true
         else 
             size <- size + 1
-            tail <- (tail + 1) 
+            tail <- tail + 1 
             q[tail] <- (Some e)
             true
  
