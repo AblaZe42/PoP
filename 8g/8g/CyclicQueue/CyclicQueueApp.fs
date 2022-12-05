@@ -15,17 +15,18 @@ let main _ =
     printfn ""
     printfn "* Test dequeue *"
     printfn "dequeue: %A" (dequeue())
-    printfn "dequeue: %A" (dequeue())
+    // printfn "dequeue: %A" (dequeue())
     printfn "toString: %A" (toString())
-    printfn ""
-    printfn "* Test isEmpty *"
-    printfn "isEmpty: %A" (isEmpty())
-    printfn ""
-    printfn "* Test isEmpty *"
-    printfn "isEmpty: %A" (length())
-    printfn ""
-    printfn "* Test toString *"
+    // printfn ""
+    // printfn "* Test isEmpty *"
+    // printfn "isEmpty: %A" (isEmpty())
+    // printfn ""
+    // printfn "* Test length *"
+    // printfn "length: %A" (length())
+    // printfn ""
+    // printfn "* Test toString *"
+    printfn "* enequeue 6 *"
     enqueue 6
-    enqueue 7
+    // enqueue 7
     printfn "toString: %A" (toString())
     0
