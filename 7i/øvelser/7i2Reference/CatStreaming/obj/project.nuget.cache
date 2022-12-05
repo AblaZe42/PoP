@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "pncE+9vuGjuTSl9BFr4q2oGVeZiVKANb0XXShIzemMC5uzYxq4sQFnjWsLph/uq2oSwhYd5mswepLEfi5XwfPQ==",
+  "success": true,
+  "projectFilePath": "C:\\C\\gitHub\\PoP\\7i\\øvelser\\7i2Reference\\CatStreaming\\CatStreaming.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\alx26\\.nuget\\packages\\fsharp.core\\6.0.5\\fsharp.core.6.0.5.nupkg.sha512"
+  ],
+  "logs": []
+}
