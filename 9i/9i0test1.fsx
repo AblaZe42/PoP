@@ -55,9 +55,10 @@ type airSpace () =
     /// <param name = "b">the new drones: destination </param>
     /// <param name = "c">the new drones: speed </param>
     /// <returns>dornelist: drone list</returns> 
-    member this.AddDrone(a, b, c) =
+    member this.addDrone(a, b, c) =
         let addedDrone = [drone (a, b, c)]
         droneList <- addedDrone @ droneList
+        droneList
     /// <summary>Moves the drones speed closer to destination</summary>
     /// <returns>list of all the drones new posistions</returns>   
     member this.flyDrones =
@@ -66,14 +67,13 @@ type airSpace () =
     /// <returns>returns a list of colided drones</returns>   
     member this.collide =
         let dronesInAir = 
-            this.drones |> List.filter (fun x -> x.atDestination = false) //Filters out drones at destination
+            this.drones |> List.filter (fun x -> x.atDestination = false)
         let pairedDrones = 
-            (List.allPairs dronesInAir dronesInAir) |> List.filter (fun x -> fst x <> snd x)
+            (List.allPairs dronesInAir dronesInAir) |> List.filter (fun x -> fst x <> snd x)  
         let collided = 
-            pairedDrones |> List.filter (fun e -> this.dronesDist e < 500)
+            pairedDrones |> List.filter (fun x -> this.dronesDist x < 500)
             |> List.map (fun (x,y) -> [x;y]) |> List.concat |> List.distinct 
-        droneList <- droneList |> List.except (collided) //removes colided drones
-        collided
+        droneList <- droneList |> List.except (collided)
 
 type Assert () =
     /// <summary>Compares the relationship between a and b</summary>
@@ -87,56 +87,46 @@ type Assert () =
             if (f a b) then "Pass" else "fail"
         printfn "%A: %A" s i
 
-let airSpace1 = airSpace()
-//Drone1 and Drone2 Both reach their destination
-airSpace1.AddDrone((0.,0.),(500.,0.), 100.) //Destination reached aafter 5 seconds
-airSpace1.AddDrone((1000.,0.),(500.,0.), 200.) //Destination reached after 3 seconds
-
-//Drone3 and Drone4 Colliedes after 6 seconds
-airSpace1.AddDrone((2000.,0.),(2500.,1000.), 100.) //Collides after 6 seconds
-airSpace1.AddDrone((3000.,0.),(2500.,1000.), 100.) //Collides after 6 secconds
-
-airSpace1.AddDrone((4000.,0.),(1000.,1000.), 300.)
-airSpace1.AddDrone((5000.,0.),(1000.,1000.), 300.)
-airSpace1.AddDrone((6000.,0.),(1000.,1000.), 300.)
-airSpace1.AddDrone((7000.,0.),(1000.,1000.), 300.)
-airSpace1.AddDrone((8000.,0.),(1000.,1000.), 300.)
-airSpace1.AddDrone((9000.,0.),(1000.,1000.), 300.)
-airSpace1.AddDrone((10000.,0.),(1000.,1000.), 300.)
-
-printfn "Drones test"
-printfn "1 sec: DronePos: %A" (airSpace1.flyDrones) //+1 sec
-(airSpace1.flyDrones) // +1 sec
-(airSpace1.flyDrones) // +1 sec
-printfn "sec 3: Drones reached destination: %A" (airSpace1.drones |> List.filter (fun e -> e.atDestination = true)).Length
-(airSpace1.flyDrones) // +1 sec
-(airSpace1.flyDrones) // +1 sec
-printfn "sec 5: Drones reached destination: %A" (airSpace1.drones |> List.filter (fun e -> e.atDestination = true)).Length
-(airSpace1.flyDrones) //+1 sec
-printfn "sec 6: Drones collided: %A" ((airSpace1.collide).Length)
-(airSpace1.flyDrones) //+1 sec
+let airSpace0 = airSpace()
+airSpace0.addDrone((0. ,0.),    (100. ,0.),     100.)
+airSpace0.addDrone((1000. ,0.), (500. ,0.),     200.)
+airSpace0.addDrone((2000. ,0.), (2500. ,1000.), 100.)
+airSpace0.addDrone((3000. ,0.), (2500. ,1000.), 100.) 
+airSpace0.addDrone((4000. ,0.), (1000. ,1000.), 300.)
+airSpace0.addDrone((5000. ,0.), (1000. ,1000.), 300.)
+airSpace0.addDrone((6000. ,0.), (1000. ,1000.), 300.)
+airSpace0.addDrone((7000. ,0.), (1000. ,1000.), 300.)
+airSpace0.addDrone((7000. ,0.), (1000. ,1000.), 300.)
+airSpace0.addDrone((9000. ,0.), (1000. ,1000.), 300.)
+airSpace0.addDrone((9250. ,0.), (1000. ,1000.), 300.)
 
 printfn ""
 printfn "Assert test"
-Assert.info "Are drones index 0 and 1 in collsion range?" (airSpace1.dronesDist ((airSpace1.drones[0]),(airSpace1.drones[1]))) 500 (<)
+Assert.info "is the total number of drones larger after adding a drone?" airSpace0.drones.Length (airSpace0.addDrone((4000.,0.),(1000. ,1000.), 300.)).Length (<)
+Assert.info "Does drones stay in same pos after this.fly" airSpace0.drones[9].pos airSpace0.flyDrones[9] (=)
+Assert.info "Are drones index 0 and 1 in collsion range?" (airSpace0.dronesDist ((airSpace0.drones[0]),(airSpace0.drones[1]))) 500 (<)
+Assert.info "Have any drones collided?" (airSpace0.collide).Length 0 (>)
 
 printfn ""
-printfn "Drones fly"
-printfn "Sec 7: Drones collided: %A, Drones atDestination in total: %A" ((airSpace1.collide).Length) (airSpace1.drones |> List.filter (fun e -> e.atDestination = true)).Length
-printfn "Sec 7: Drones inAir: %A" ((airSpace1.drones.Length) - (airSpace1.drones |> List.filter (fun e -> e.atDestination = true)).Length)
-(airSpace1.flyDrones) //+1 sec
-printfn "Sec 8: Drones collided: %A, Drones atDestination in total: %A" ((airSpace1.collide).Length) (airSpace1.drones |> List.filter (fun e -> e.atDestination = true)).Length
-printfn "Sec 8: Drones inAir: %A" ((airSpace1.drones.Length) - (airSpace1.drones |> List.filter (fun e -> e.atDestination = true)).Length)
-(airSpace1.flyDrones) //+1 sec
-printfn "Sec 9: Drones collided: %A, Drones atDestination in total: %A" ((airSpace1.collide).Length) (airSpace1.drones |> List.filter (fun e -> e.atDestination = true)).Length
-printfn "Sec 9: Drones inAir: %A" ((airSpace1.drones.Length) - (airSpace1.drones |> List.filter (fun e -> e.atDestination = true)).Length)
-(airSpace1.flyDrones) //+1 sec
-printfn "Sec 10: Drones collided: %A, Drones atDestination in total: %A" ((airSpace1.collide).Length) (airSpace1.drones |> List.filter (fun e -> e.atDestination = true)).Length
-printfn "Sec 10: Drones inAir: %A" ((airSpace1.drones.Length) - (airSpace1.drones |> List.filter (fun e -> e.atDestination = true)).Length)
-(airSpace1.flyDrones) //+1 sec
-(airSpace1.flyDrones) //+1 sec
-(airSpace1.flyDrones) //+1 sec
-(airSpace1.flyDrones) //+1 sec
-(airSpace1.flyDrones) //+1 sec
-printfn "Sec 15: Drones collided: %A, Drones atDestination in total: %A" ((airSpace1.collide).Length) (airSpace1.drones |> List.filter (fun e -> e.atDestination = true)).Length
-printfn "Sec 15: Drones inAir: %A" ((airSpace1.drones.Length) - (airSpace1.drones |> List.filter (fun e -> e.atDestination = true)).Length)
+printfn "Test run"
+
+printfn "1 sec: drones: %A drones collided: %A" (airSpace0.drones).Length (airSpace0.collide).Length
+(airSpace0.flyDrones) // +1 sec
+printfn "2 sec: drones: %A drones collided: %A" (airSpace0.drones).Length (airSpace0.collide).Length
+(airSpace0.flyDrones) // +1 sec
+printfn "3 sec: drones: %A drones collided: %A" (airSpace0.drones).Length (airSpace0.collide).Length
+(airSpace0.flyDrones) // +1 sec
+printfn "4 sec: drones: %A drones collided: %A" (airSpace0.drones).Length (airSpace0.collide).Length
+(airSpace0.flyDrones) // +1 sec
+printfn "5 sec: drones: %A drones collided: %A" (airSpace0.drones).Length (airSpace0.collide).Length
+(airSpace0.flyDrones) // +1 sec
+printfn "6 sec: drones: %A drones collided: %A" (airSpace0.drones).Length (airSpace0.collide).Length
+(airSpace0.flyDrones) // +1 sec
+printfn "7 sec: drones: %A drones collided: %A" (airSpace0.drones).Length (airSpace0.collide).Length
+(airSpace0.flyDrones) // +1 sec
+printfn "8 sec: drones: %A drones collided: %A" (airSpace0.drones).Length (airSpace0.collide).Length
+(airSpace0.flyDrones) // +1 sec
+printfn "9 sec: drones: %A drones collided: %A" (airSpace0.drones).Length (airSpace0.collide).Length
+(airSpace0.flyDrones) // +1 sec
+printfn "Drones reached distination: %A" (airSpace0.drones |> List.filter (fun x -> x.atDestination = true)).Length
+
