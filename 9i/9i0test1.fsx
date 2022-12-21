@@ -74,6 +74,7 @@ type airSpace () =
             pairedDrones |> List.filter (fun x -> this.dronesDist x < 500)
             |> List.map (fun (x,y) -> [x;y]) |> List.concat |> List.distinct 
         droneList <- droneList |> List.except (collided)
+        collided
 
 type Assert () =
     /// <summary>Compares the relationship between a and b</summary>

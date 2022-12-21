@@ -5,10 +5,16 @@ open Canvas
 
 type position = int*int
 type tetromino = 
-    new ((a : bool[,]), (c : color), (o : position)) =
-        (a, c, o)
-    member this.image (a: bool[,]) =
-         a
+    struct
+        val A : bool[,]
+        val C : color
+        val O : position
+        new (a, c, o) =
+            {A=a; C=c; O=o}
+    end
+    member this.image (o) =
+        o
+    
     
     // new () = 
     //     let a = square (20, 20)
@@ -19,8 +25,11 @@ type square (offset : int*int) =
     member this.image = 
         let a = array2D [ [ true; true ]; [ true; true ] ]
         a
+    member this.test =
+        "Hello world"
 
 let a = square (20, 20)
+printfn "%A" a.test
 let a1 = array2D [ [ true; true ]; [ true; true ] ]
 let myTetrimono = tetromino (a1, red, (20, 20))
 printfn "%A" myTetrimono.image
