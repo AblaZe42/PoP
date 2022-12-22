@@ -1,74 +1,7 @@
 #r "nuget:DIKU.Canvas, 1.0.1"
 open Canvas
 
-// type listType = (bool list * bool list) list
-
-type position = int*int
-type tetromino (A: bool[,], C: color, O:position) = 
-    let mutable a = A
-    let mutable o = O
-    let mutable c = C
-    member this.image
-        with get () = a 
-        and set (n) = a <- n
-    member this.color
-        with get () = c
-        and set (n) = c <- n
-    member this.pos
-        with get () = o
-        and set (n) = o <- n
-    member this.clone () =
-        let x = tetromino (A, C, O)
-        x.image <- a
-        x.color <- c
-        x.pos <- o
-        x
-    // member this.rotateRight () =
-        
-    override this.ToString() =
-        sprintf "%A %A %A " a o c
-
-type square (offset : int*int) =
-    inherit tetromino (array2D [ [ true; true ]; [ true; true ] ], yellow, (0,5))
-    member this.image = 
-        let a = array2D [ [ true; true ]; [ true; true ] ]
-        a
-    member this.test =
-        "Hello world"
-
-let a = square (20, 20)
-// printfn "%A" a.test
-let myTetrimono = tetromino (a.image, red, (20, 20))
-printfn "%A" (myTetrimono.ToString())
-
-type straight (offset : int*int) =
-    member this.image = 
-        array2D [[true; true; true; true]]
-
-type t (offset : int*int) =
-    member this.image =
-        array2D [[true; true; true]; [false; true; false]]
-
-let some = t (20,20)
-let myT = tetromino ((array2D [ [ false; true; false ]; [ true; true; true ] ]), yellow, (0,5))
-
-
-type l (offset : int*int, m: bool) =
-    member this.image =
-        if m = false
-        then
-            array2D [[true; false; false]; [true; true; true]]
-        else
-            array2D [[false; false; true]; [true; true; true]]
-
-type z (offset : int*int, m:bool) =
-    member this.image =
-        if m = false
-        then 
-            array2D [[false; true; true]; [true; true; false]]
-        else 
-            array2D [[true; true; false]; [false; true; true]]
-
+// -- Types -- //
 type Color =
     | Yellow
     | Cyan
@@ -92,6 +25,77 @@ let fromValue v =
         |Some Purple -> PurpleC
         |_-> Canvas.white
 
+// -- Tetrimino -- //
+type position = int*int
+type tetromino (A: bool[,], C: Color, O:position) = 
+    let mutable a = A
+    let mutable o = O
+    let mutable c = C
+    member this.image
+        with get () = a 
+        and set (n) = a <- n
+    member this.color
+        with get () = c
+        and set (n) = c <- n
+    member this.pos
+        with get () = o
+        and set (n) = o <- n
+    member this.clone () =
+        let x = tetromino (A, C, O)
+        x.image <- a
+        x.color <- c
+        x.pos <- o
+        x
+    member this.rotateRight () =
+        let x = this.clone ()
+        let a = x.image
+        let w = Array2D.length1 this.image //i
+        let h = Array2D.length2 this.image //j
+        printfn "%A" (w, h)
+        let b = Array2D.create h w false
+        for i in 0..h-1 do //   0..1
+            for j in 0..w-1 do // 0..2
+                b.[i,j] <- a.[w-1-j,i] // 3-1-1, 1
+        x.image <- b
+        x
+        
+    override this.ToString() =
+        sprintf "%A %A %A " a o c
+
+// -- Pices -- //
+type square (offset : int*int) =
+    inherit tetromino (array2D [ [ true; true ]; [ true; true ] ], Yellow, (offset))
+
+type straight (offset : int*int) =
+    inherit tetromino ( (array2D [[true; true; true; true]]), Cyan, (offset) )
+
+type t (offset : int*int) =
+    inherit tetromino ( (array2D [[true; true; true]; [false; true; false]]), Purple, (offset) )
+
+type l (offset:position, b:bool) = 
+    inherit tetromino (array2D ([[true;true];[true;true];[true;true]]), Orange, offset)
+    do 
+        if b = true then 
+            base.image [1,0] <- false
+            base.image [1,1] <- false
+        else 
+            base.image [1,1] <- false
+            base.image [1,2] <- false 
+            base.color <- Blue
+
+type z (offset:position, b:bool) = 
+    inherit tetromino (array2D([[true;true;true];[true;true;true]]), Red, offset)
+    do
+        if b = true then
+            base.image [0,0] <- false
+            base.image [2,1] <- false
+        else 
+            base.image [2,0] <- false
+            base.image [0,1] <- false
+            base.color <- Green
+
+
+//Board
 type board ( w : int , h : int ) =
     let _board = Array2D . create w h None
     do _board.[1 ,0] <- Some Green
@@ -104,7 +108,13 @@ let draw ( w : int ) ( h : int ) ( s : state ) =
     let C = create w h
     let V = s.board |> Array2D.iteri (fun i j v -> do setFillBox C (fromValue v) ((i*30), (j*30)) (((i*30)+30),((j*30)+30))) 
     C
-     
+
+// -- Test -- //
+let a = square (20, 20)
+// printfn "%A" a.test
+let myTetrimono = tetromino (a.image, Red, (20, 20))
+printfn "%A" (myTetrimono.ToString())
+
 // insert your definition of draw here
 
 let b = board (10 , 20)
@@ -112,12 +122,3 @@ let b = board (10 , 20)
 let C = draw 300 600 b
 do show C " testing "
 
-
-// Struckt
-    // struct //Random
-    //     val A : bool[,]
-    //     val C : color
-    //     val O : position
-    //     new (a, c, o) =
-    //         {A=a; C=c; O=o}
-    // end

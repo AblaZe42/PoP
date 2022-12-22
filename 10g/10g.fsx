@@ -110,3 +110,5 @@ let b = board (10 , 20)
 // printfn "%A" (b.board)
 let C = draw 300 600 b
 do show C " testing "
+
+        //x.image <- Array2D.init h w (fun i j -> a.[w-1-j,i])
