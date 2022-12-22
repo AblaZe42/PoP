@@ -8,10 +8,25 @@ type tetromino (A: bool[,], C: color, O:position) =
     let mutable a = A
     let mutable o = O
     let mutable c = C
-    member this.image (o) =
-        o
+    member this.image
+        with get () = a 
+        and set (n) = a <- n
+    member this.color
+        with get () = c
+        and set (n) = c <- n
+    member this.pos
+        with get () = o
+        and set (n) = o <- n
+    member this.clone () =
+        let x = tetromino (A, C, O)
+        x.image <- a
+        x.color <- c
+        x.pos <- o
+        x
+    // member this.rotateRight () =
+        
     override this.ToString() =
-        sprintf "%A" a
+        sprintf "%A %A %A " a o c
 
 type square (offset : int*int) =
     inherit tetromino (array2D [ [ true; true ]; [ true; true ] ], yellow, (0,5))
@@ -33,6 +48,10 @@ type straight (offset : int*int) =
 type t (offset : int*int) =
     member this.image =
         array2D [[true; true; true]; [false; true; false]]
+
+let some = t (20,20)
+let myT = tetromino ((array2D [ [ false; true; false ]; [ true; true; true ] ]), yellow, (0,5))
+
 
 type l (offset : int*int, m: bool) =
     member this.image =
