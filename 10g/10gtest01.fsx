@@ -25,7 +25,7 @@ let fromValue v =
         |Some Green -> Canvas.green
         |Some Purple -> PurpleC
         |Some White -> Canvas.white
-        |_ -> Canvas.black
+        |_ -> Canvas.white
 
 // -- Tetrimino -- //
 type position = int*int
@@ -104,15 +104,15 @@ type z (offset:position, b:bool) =
 type board ( w_ : int , h_ : int ) =
     let w = w_
     let h = h_
-    let _board = Array2D.create w h (Some White)
-    // do _board.[1 ,0] <- Some Green
+    let _board = Array2D.create w h None
+    do _board.[4 ,0] <- Some Green
     member this.width 
         with get () = w
     member this.height 
         with get () = h
     member this.board 
         with get () = _board
-    member this.newPiece () =
+    member this.newPiece () : tetromino option =
         let rnd = System.Random ()
         let r = rnd.Next 7
         match r with
@@ -123,9 +123,21 @@ type board ( w_ : int , h_ : int ) =
             | 5 -> Some (l ((0,5), true))
             | 6 -> Some (z ((0,5), true))
             | 7 -> Some (z ((0,5), true))
-            |_-> None  
+            |_-> None 
+        // match brik med slice i samme dimmenstion
+    member this.put (t : tetromino) =
+        let offsetT = t.pos
+        let w1 = Array2D.length1 t.image
+        let h1 = Array2D.length2 t.image
+        let a = ((fst offsetT), (fst offsetT) + w1-1 ) 
+        let b = ((snd offsetT), (snd offsetT) + h1-1 ) 
+        this.board[(fst a) .. (snd a), (fst b) .. (snd b)]
+        
+        
+
     override this.ToString () =
         sprintf "%A" this.board
+
 
 type state = board
 let draw ( w : int ) ( h : int ) ( s : state ) =
@@ -134,8 +146,10 @@ let draw ( w : int ) ( h : int ) ( s : state ) =
     C
 
 // -- Test -- //
-let bo = board (5,5)
+let bo = board (10,20)
+let something = t(4,0)
 printfn "%A" bo
+printfn "Slice %A" (bo.put (something))
 
 let b = board (10 , 20)
 // printfn "%A" (b.board)
