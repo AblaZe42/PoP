@@ -1,4 +1,4 @@
-#2ø0
+##### -- 2ø0 -- #####
 print("2ø0")
 def nul() :
     firstName = "Jon"
@@ -6,7 +6,7 @@ def nul() :
     print(firstName, lastName)
 nul()
 
-#2ø1
+##### -- 2ø1 -- #####
 print( )
 print("2ø1")
 def en (x):
@@ -16,7 +16,7 @@ def en (x):
     print( fx )
 en(2)
 
-#2ø2
+##### -- 2ø3 -- #####
 print( )
 print("2ø2")
 # Input #
@@ -32,7 +32,7 @@ def to (i) :
 toTest = to(toVal)
 print (toTest)
 
-#2ø3
+##### -- 2ø4 -- #####
 print( )
 print("2ø3")
 def tre1 (x, n):
@@ -41,7 +41,7 @@ def tre1 (x, n):
 tre1Test = tre1(2, 4)
 print (tre1Test)
 
-#3ø0
+##### -- 3ø0 -- #####
 print( )
 print("3ø0")
 def fire ():
@@ -71,10 +71,7 @@ print(fireTest)
 print(fireFtest)
 print(fireGTest)
 
-#Use List.map write a function, which takes a list of integers and returns the list of floats where
-#each element has been divided by 2.0. For example, if the function is given the input [1; 2;
-#3], then it should return [0.5; 1.0; 1.5].
-#3ø1
+##### -- 3ø1 -- #####
 print( )
 print("3ø1")
 def fem():
