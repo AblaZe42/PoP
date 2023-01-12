@@ -7,13 +7,10 @@ class DoNothing:
     def description(self) -> str:
         return self.__doc__.lower()
 
-a = DoNothing()
-print(a.description())
-
 class addConst:
     ''' add value and input ''' 
     def __init__(self, value):
-        self.value = value    # instance variable unique to each instance
+        self.value = value 
     
     def apply (self, inp):
         return inp + self.value
@@ -56,15 +53,6 @@ class ProductNum:
     def description(self) -> str:
         return self.__doc__.lower()
 
-quintiplyer = repeater(5)
-quintiplyer.apply(42)
-
-summer = GeneralSum()
-summer.apply([1,2,3,4,5,6,7,8,9,10])
-
-proder = (ProductNum())
-proder.apply([1,2,3,4,5])
-
 class Map:
     ''' Something '''
     def __init__(self, step):
@@ -78,9 +66,6 @@ class Map:
         return lst
     def description(self) -> str:
         return self.__doc__.lower()
-
-adderOne = Map(addConst(2))
-print (adderOne.apply([1, 2, 3, 4 ,5]))
 
 class Pipeline:
     def __init__(self, step):
@@ -107,9 +92,6 @@ testPipeline = Pipeline([
     DoNothing(),
     ProductNum()])
 
-print (testPipeline.apply(0))
-print (testPipeline.description())
-
 class CsvReader:
     def apply(inp): 
         lst = []
@@ -118,8 +100,6 @@ class CsvReader:
             for row in deathrow_reader: 
                 lst.append(row)
         return lst 
-
-data = CsvReader.apply('critters.csv') 
 
 class critterStats:
     def apply(self, inp):
@@ -132,5 +112,29 @@ class critterStats:
                 colorDic[Colour] = 1
         return colorDic
 
-testStats = critterStats()
-print (testStats.apply(data))
+class ShowAsciiBarchart:
+    def maxLength(self, inp):
+        n = max(len(key) for key in inp)
+        return n
+
+    def apply(self, inp):
+        n = ""
+        for key, value in inp.items():
+            n = n + "\n" + ("{}: {}".format(key.ljust(self.maxLength(inp)), "*" * value)).capitalize()
+        return n
+
+class cal:
+    def __init__(self, value):
+        self.value = value
+
+    def square(self):
+        return self.value * self.value
+
+    def cube(self):
+        return self.value * self.value * self.value
+
+class average:
+    def apply(self, inp):
+        sum = GeneralSum()
+        n = sum.apply(inp)
+        return n / len(inp)
