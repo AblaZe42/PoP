@@ -18,7 +18,6 @@ class addConst:
     def description(self) -> str:
         return self.__doc__.lower()
 
-
 class repeater:
     ''' Repeate num times, as a list ''' 
     def __init__(self, num):
@@ -84,13 +83,6 @@ class Pipeline:
             lst.append(value)
         s = ' --> '.join(lst)
         return s 
-
-testPipeline = Pipeline([
-    addConst(45),
-    repeater(3),
-    Map(addConst(-3)),
-    DoNothing(),
-    ProductNum()])
 
 class CsvReader:
     def apply(inp): 
