@@ -90,5 +90,3 @@ def seks(n):
     return n[0]
 testSeks = seks(fireFtest)
 print (testSeks)
-
-#3ø3
