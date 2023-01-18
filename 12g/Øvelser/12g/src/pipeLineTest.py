@@ -16,10 +16,10 @@ def opgaveA():
     print("repeater:   " + str(testRepeater.apply(42)))
 
     testGeneralSum = n.GeneralSum()
-    print("GeneralSum: " + str(testGeneralSum.apply([2, 8, 32])))
+    print("GeneralSum: " + str(testGeneralSum.apply([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])))
 
     ProductNum = n.ProductNum()
-    print("ProductNum: " + str(ProductNum.apply([7, 3, 2])))
+    print("ProductNum: " + str(ProductNum.apply([1, 2, 3, 4, 5])))
 
 def opgaveB():
     print()
