@@ -1,5 +1,5 @@
 Alexander Husted
-August Pallesen
+August PallesenT
 
 Vigtigste beslutninger
 ----- Opgave A -----

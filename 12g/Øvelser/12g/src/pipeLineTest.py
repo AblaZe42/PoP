@@ -5,7 +5,6 @@ n = pipeLine
 
 def opgaveA():
     print(" ---------- Opgave A ---------- ")
-
     testDoNothing = n.DoNothing()
     print("Do nothing: " + str(testDoNothing.apply(42)) )
 
@@ -15,8 +14,11 @@ def opgaveA():
     testRepeater = n.repeater(5)
     print("repeater:   " + str(testRepeater.apply(42)))
 
-    testGeneralSum = n.GeneralSum()
-    print("GeneralSum: " + str(testGeneralSum.apply([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])))
+    testGeneralSum = n.GeneralSum(1, lambda x,y: x*y)
+    print("GenaralSum  " + str(testGeneralSum.apply([22, 13 ,3])) )
+
+    testSumNum = n.SumNum()
+    print("SumNum:    " + str(testSumNum.apply([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])))
 
     ProductNum = n.ProductNum()
     print("ProductNum: " + str(ProductNum.apply([1, 2, 3, 4, 5])))
@@ -38,6 +40,9 @@ def opgaveC():
         n.ProductNum()])
     print("Pipeline:   " + str(testPipeline.apply(0)))
     print (testPipeline.description())
+    print ("Add element ")
+    testPipeline.addSteps(n.addConst(1))
+    print("Pipeline:   " + str(testPipeline.apply(0)))
 
 def opgaveD():
     print()
