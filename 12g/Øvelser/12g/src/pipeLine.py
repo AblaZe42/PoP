@@ -2,7 +2,7 @@ import csv
 
 class DoNothing:
     """Do nothing
-    >>> DoNothing().apply('Filippa69')
+    >>> DoNothing().apply('Filippa70')
     'Filippa70'
     """
     def apply(self, inp):
@@ -11,7 +11,7 @@ class DoNothing:
         return self.__doc__.lower()
 
 class addConst:
-    ''' Ddd value and input together
+    ''' Add value and input together
     >>> addConst(1).apply(41)
     42
     ''' 
@@ -29,19 +29,14 @@ class repeater:
     ''' Create a list of inp with num length 
     >>> repeater(5).apply(42)
     [42, 42, 42, 42, 42] 
-
     '''
-
-
     def __init__(self, num):
             self.num = num   
-
     def apply (self, inp):
         lst = []
         for x in range (self.num):
             lst.insert(True, inp)
         return lst
-
     def description(self) -> str:
         return self.__doc__.lower()
 
@@ -51,15 +46,15 @@ class GeneralSum:
     858
     '''
     def __init__(self,ne,op):
-        self._neutral = ne #neutralt element dvs + = 0, * = 1
-        self.operator = op #operator dvs funktion
+        self._neutral = ne
+        self.operator = op 
     def apply(self,input):
         startAcc = self._neutral
         function = self.operator
-        for i in input:
-            startAcc = function(i,startAcc)
+        for x in input:
+            startAcc = function(x,startAcc)
         return startAcc
-    def description(self,):
+    def description(self):
         return self.__doc__.lower()
 
 class SumNum:
@@ -67,7 +62,6 @@ class SumNum:
     >>> SumNum().apply([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
     55
     '''
-
     def apply (self, inp):
         n = GeneralSum(0, lambda x,y: x+y)
         return n.apply(inp)
@@ -80,7 +74,6 @@ class ProductNum:
     >>> Product().apply([1, 2, 3, 4, 5])
     120
     '''
-
     def apply (self, inp):
         n = GeneralSum(1, lambda x,y: x*y)
         return n.apply(inp)
@@ -89,7 +82,7 @@ class ProductNum:
         return self.__doc__.lower()
 
 class Map:
-    ''' Adds self.step to all elements in list
+    ''' Applies self.step to all elements in list
     >>> Map(addConst(2)).apply([1, 2, 3, 4, 5])
     [3, 4, 5, 6, 7]
     '''
@@ -139,8 +132,6 @@ class CsvReader:
     ''' Reads data from file one row at a time
     >>> CsvReader.apply('critters.csv')
     Returns a list of dictionaries 
-    
-    
     '''
     def apply(inp): 
         lst = []
@@ -156,7 +147,6 @@ class critterStats:
     >>> critterStats().apply(data)
     returns list of dictonaries
     '''
-    
     def apply(self, inp):
         colorDic = {}
         for row in inp:
@@ -204,7 +194,7 @@ class cal:
 class average:
     ''' Takes the average of inp
     >>> average().apply([5, 5, 5, 5])
-    5
+    5.0
     '''
     def apply(self, inp):
         sum = SumNum()
